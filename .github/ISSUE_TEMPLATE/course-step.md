@@ -4,7 +4,6 @@ about: Describes a step required to learn a part of the course.
 
 ---
 
-# Section name
 - [ ] Read before the lecture
 - [ ] Go to lecture
 - [ ] Do exercises X to Y
