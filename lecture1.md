@@ -47,4 +47,33 @@ A factor of 10 in cost for each step the bug is not identified
 - Runtime errors
   - Program compiles, but execution is aborted
 - Semantic errors
-  - THe program runs and finishes, but produce sdifferent result than planned. <--- __UNIT TESTS!__
+  - The program runs and finishes, but produces different result than planned. <--- __UNIT TESTS!__
+
+## The art of programming
+
+- To learn how to program is:
+  - Problem solving
+  - A way of thinking
+- No tconnected to any specific programming language
+  - Almost all languages are similar
+- This is not a course in C
+  - This is a course in programming
+  - We are using C as a tool
+  - In other courses there are other languages used
+    - Python, assembly, Java, Javascript, etc...
+
+## Variables
+
+C has types. Example: `int` means integer.
+
+`%d` is string replacement for integers.
+
+```c
+int sum = 20 + 30;
+printf("The sum is %d\n", sum);
+```
+
+## Embedded systems
+
+Designed to act with the physical world.
+I/O is a coffee machine or lamps. Cool stuff. Sensors and stuff. IoT and Cyber-physical Systems (CPS).
