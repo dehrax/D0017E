@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+//2.2
 #if 0
 int main(void){
     printf("1. In C, lowercase letters are significant.\n");
@@ -10,15 +11,20 @@ int main(void){
 }
 #endif
 
+//2.3
 #if 0
-int main(void){
-    int subtr = 87 - 15;
-    printf("WOW, LOOK A THIS NEW AMAZING VALUE: %d\n", subtr);
-    return 0;
+int main (void){
+    printf ("Testing...");
+    printf ("....1");
+    printf ("...2");
+    printf ("..3");
+    printf ("\n");
+return 0;
 }
 #endif
 
-#if 0
+//2.4
+#if 1
 int main(void){
     int subtr = 87 - 15;
     printf("WOW, LOOK A THIS NEW AMAZING VALUE: %d\n", subtr);
