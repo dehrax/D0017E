@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 //2.2
-#if 0
+#if 1
 int main(void){
     printf("1. In C, lowercase letters are significant.\n");
     printf("2. main is where program execution begins.\n");
@@ -12,14 +12,14 @@ int main(void){
 #endif
 
 //2.3
-#if 0
+#if 1
 int main (void){
     printf ("Testing...");
     printf ("....1");
     printf ("...2");
     printf ("..3");
     printf ("\n");
-return 0;
+    return 0;
 }
 #endif
 

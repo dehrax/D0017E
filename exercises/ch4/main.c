@@ -24,7 +24,7 @@ int main(void){
 #if 0
 int main(void){
     double x = 2.55;
-    float result = 3*x*x*x + x*x + 6; //Could use math library here
+    double result = 3*x*x*x + x*x + 6; //Could use math library here
     printf("%f\n", result);
     return 0;
 }
