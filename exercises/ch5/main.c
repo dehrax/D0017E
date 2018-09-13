@@ -1,6 +1,6 @@
 #include <stdio.h>
 //4.2
-#if 1
+#if 0
 int main(void){
     for(int i = 1; i <= 10; i++){
         printf("n=%d, n²=%d\n", i, i*i);
@@ -27,9 +27,11 @@ int main(void){
 #if 0
 int main(void){
     int n, two_to_the_n;
+
     printf("TABLE OF POWERS OF TWO\n\n");
     printf(" n2 to the n\n");
     printf("------------------\n");
+
     two_to_the_n=1;
     for(n=0;n<=10;++n){
         printf("%2i %i\n",n,two_to_the_n);
@@ -41,7 +43,7 @@ int main(void){
 
 //4.8
 
-#if 0
+#if 1
 int main (void)
 {
     int n, number, triangularNumber, counter;

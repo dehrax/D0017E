@@ -36,7 +36,7 @@ while(/*condition*/){
 }
 ```
 
-- `do while` executes before checking condition
+- `do while` executes before checking condition. When you want it to run at least one time.
 
 ```c
 do{
