@@ -58,7 +58,7 @@ while(true){
 
 ```
 
-## User input to termianl programs
+## User input to terminal programs
 
 - `scanf()`
 
