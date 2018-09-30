@@ -63,6 +63,10 @@ int main(void){
         fputs(firstLine, output);
     }
 
+    fclose(firstfile);
+    fclose(secondfile);
+    fclose(output);
+    
     printf("Done!\n");
     return 0;
 }
