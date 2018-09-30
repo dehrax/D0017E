@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #define BUFFER_SIZE 255
+#define _GNU_SOURCE
 //16.3
 #if 0
 int main(void){
@@ -9,6 +10,7 @@ int main(void){
     
     if(!lowercase || !uppercase){
         printf("Can't read the file\n");
+        fcloseall();
         return 1;
     }
     char content[BUFFER_SIZE];
@@ -48,7 +50,7 @@ int main(void){
 
     if(!firstfile || !secondfile || !output){
         printf("Failed to read files.\n");
-        return 1;
+        return fcloseall();
     }
 
     while(fgets(firstLine, BUFFER_SIZE, firstfile) && fgets(secondLine, BUFFER_SIZE, secondfile)){
@@ -63,10 +65,12 @@ int main(void){
         fputs(firstLine, output);
     }
 
-    fclose(firstfile);
-    fclose(secondfile);
-    fclose(output);
-    
+    // fclose(firstfile);
+    // fclose(secondfile);
+    // fclose(output);
+
+    fcloseall();
+
     printf("Done!\n");
     return 0;
 }
