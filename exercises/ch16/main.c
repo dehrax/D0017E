@@ -50,7 +50,11 @@ int main(void){
 
     if(!firstfile || !secondfile || !output){
         printf("Failed to read files.\n");
-        return fcloseall();
+
+        fclose(firstfile);
+        fclose(secondfile);
+        fclose(output);
+        return 1;
     }
 
     while(fgets(firstLine, BUFFER_SIZE, firstfile) && fgets(secondLine, BUFFER_SIZE, secondfile)){
@@ -65,11 +69,9 @@ int main(void){
         fputs(firstLine, output);
     }
 
-    // fclose(firstfile);
-    // fclose(secondfile);
-    // fclose(output);
-
-    fcloseall();
+    fclose(firstfile);
+    fclose(secondfile);
+    fclose(output);
 
     printf("Done!\n");
     return 0;
