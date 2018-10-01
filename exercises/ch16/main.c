@@ -48,12 +48,20 @@ int main(void){
 
     FILE *everythingThatIsLeft;
 
-    if(!firstfile || !secondfile || !output){
+    if(!firstfile){
         printf("Failed to read files.\n");
-
-        fclose(firstfile);
         fclose(secondfile);
         fclose(output);
+        return 1;
+    } else if(!secondfile){
+        printf("Failed to read files.\n");
+        fclose(firstfile);
+        fclose(output);
+        return 1;
+    } else if(!output){
+        printf("Failed to read files.\n");
+        fclose(firstfile);
+        fclose(secondfile);
         return 1;
     }
 
