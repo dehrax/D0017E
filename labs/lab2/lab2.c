@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "lab2_funcs.h"
 #define MAX_BUFFER 255
 
@@ -20,14 +21,13 @@ int processLine(const char *line){
 
     char* p = input;
     while(*p != '\0'){
-        if(*p == ' '){
+        if(isspace(*p)){
             *p = '\0';
             args[argc++] = p + 1;
         }
         p++;
     }
 
-    puts(args[0]);
     if(!strcmp(args[0], "hello")){
         puts("Hi on you too!");
     }
