@@ -4,14 +4,21 @@
 #include "lab2_funcs.h"
 #define MAX_BUFFER 255
 
+matlab_var_t vars[] = {
+    {'a', 0.0},
+    {'b', 0.0},
+    {'c', 0.0},
+    {'r', 0.0},
+    {'x', 0.0},
+    {'y', 0.0}
+};
+
+
+
 int processLine(const char *line){
     char input[MAX_BUFFER];
 
     strcpy(input, line);//We don't want that const
-    if(!strcmp(input, "quit")){
-        puts("\nOkay, bye!");
-        return 0;
-    }
 
     char* args[10];
     int argc = 0;
@@ -28,8 +35,12 @@ int processLine(const char *line){
         p++;
     }
 
-    if(!strcmp(args[0], "hello")){
-        puts("Hi on you too!");
+    if(!strcmp(args[0], "quit")){
+        puts("Okay, goodbye!");
+        return 0;
+    } else if(!strcmp(args[0], "show")){
+        //Takes first char in string
+        show(args[1][0]);
     }
 
     return 1;
