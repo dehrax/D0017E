@@ -29,6 +29,7 @@ int array(char name, double start, double stop);
 int show(char name);
 int set(char name, char* value);
 int calc(char r, char x,char y, char op);
+int printhelp(void);
 
 #endif /* __LAB2_H__ */
 
