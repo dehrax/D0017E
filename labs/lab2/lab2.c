@@ -14,6 +14,14 @@ matlab_var_t vars[] = {
 };
 
 
+matlab_arr_t arrs[] = {
+    {'A'},
+    {'B'},
+    {'C'},
+    {'R'},
+    {'X'},
+    {'Y'}
+};
 
 int processLine(const char *line){
     char input[MAX_BUFFER];
@@ -41,6 +49,18 @@ int processLine(const char *line){
     } else if(!strcmp(args[0], "show")){
         //Takes first char in string
         show(args[1][0]);
+    } else if(!strcmp(args[0], "clear")){
+        //Takes first char in string
+        clear(args[1][0]);
+    } else if (!strcmp(args[0], "set")){
+        set(args[1][0], args[2]);
+    } else if (!strcmp(args[0], "array")){
+        double a = 0, b = 0;
+        sscanf(args[2], "%lf", &a);
+        sscanf(args[3], "%lf", &b);
+        array(args[1][0], a, b);
+    }else{
+        puts("Wow there, buddy! Can't find that command!");
     }
 
     return 1;
@@ -57,7 +77,20 @@ int readLine(void){
     return 0;
 }
 
+int initVars(){
+    for(int i = 0; i < ARRAY_LEN; i++){
+        arrs[0].v[i]=0;
+        arrs[1].v[i]=0;
+        arrs[2].v[i]=0;
+        arrs[3].v[i]=0;
+        arrs[4].v[i]=0;
+        arrs[5].v[i]=0;
+    }
+    return 0;
+}
+
 int main(int argc, char *argv[]) {
+    initVars();
     readLine();
     return 0;
 }
