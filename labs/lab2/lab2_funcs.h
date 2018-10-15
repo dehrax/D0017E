@@ -8,7 +8,7 @@
 #include <math.h>
 #include "lab2.h"
 
-
+// int* find_var(char* name);
 // add all other functions below
 int clear(char var);
 int calc(char r, char x, char y, char op);
