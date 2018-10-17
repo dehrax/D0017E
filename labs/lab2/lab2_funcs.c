@@ -105,11 +105,14 @@ int calc(char r, char x, char y, char op){
     int isMatrix = 0;
 
     //Fetch variables
-    if(isupper(r)){
+    if(isupper(r) && isupper(x) && isupper(y)){
         isMatrix = 1;
+    } else if(isupper(r) && isupper(x) && isupper(y)){
+        isMatrix = 0;
+    } else{
+        puts("Please do not mix scalars and vectors! My brain can't handle it!");
+        return 1;
     }
-
-    //TODO: Handle input and variable assigment. What to do when multiplying vector with scalar?
 
     //Decide operation and save that operation in the function pointer
     switch(op){
