@@ -111,7 +111,7 @@ int calc(char r, char x, char y, char op){
         A = find_arr(x);
         B = find_arr(y);
         C = find_arr(r);
-    } else if(isupper(r) && isupper(x) && isupper(y)){
+    } else if(!(isupper(r) && isupper(x) && isupper(y))){
         a = find_var(x)->v;
         b = find_var(y)->v;
     } else{
