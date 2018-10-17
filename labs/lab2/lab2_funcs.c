@@ -101,14 +101,19 @@ int show_vars(){
 int calc(char r, char x, char y, char op){
     double a = 0, b = 0;
     matlab_arr_t *A = NULL, *B = NULL, *C = NULL;
+    //Function pointer to define the operation to be used.
     double (*func_ptr)(double, double);
     int isMatrix = 0;
 
     //Fetch variables
     if(isupper(r) && isupper(x) && isupper(y)){
         isMatrix = 1;
+        A = find_arr(x);
+        B = find_arr(y);
+        C = find_arr(r);
     } else if(isupper(r) && isupper(x) && isupper(y)){
-        isMatrix = 0;
+        a = find_var(x)->v;
+        b = find_var(y)->v;
     } else{
         puts("Please do not mix scalars and vectors! My brain can't handle it!");
         return 1;
