@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "lab2.h"
+#include "operations.h"
 #include <ctype.h>
 
 void printhelp(void);
@@ -76,7 +77,7 @@ int clear(char name){
     return 1;
 }
 
-int set(char name, char* value){
+int set(char name, double value){
     matlab_var_t* var = find_var(name);
     double double_val = 0;
     if(!var){
@@ -90,4 +91,37 @@ int set(char name, char* value){
 
     return 1;
 
+}
+
+int calc(char r, char x, char y, char op){
+    double a = 0, b = 0, c = 0;
+    matlab_arr_t* A, B, C;
+    double (*func_ptr)(double, double);
+    int isMatrix = 0;
+
+    //Fetch variables
+    if(isupper(r)){
+        isMatrix = 1;
+    }
+
+    //TODO: Handle input and variable assigment. What to do when multiplying vector with scalar?
+
+    //Decide operation and save that operation in the function pointer
+    switch(op){
+        case '/':
+            func_ptr = divide;
+            break;
+        case '*':
+            func_ptr = multiply;
+            break;
+        case '+':
+            func_ptr = add;
+            break;
+        case '-':
+            func_ptr = subtract;
+            break;
+    }
+
+    isMatrix ? vecOps(A, B, func_ptr, C) : set(r, func_ptr(a,b));
+    
 }

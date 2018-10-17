@@ -2,6 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "lab2_funcs.h"
+#include "operations.h"
 #define MAX_BUFFER 255
 
 matlab_var_t vars[] = {
@@ -53,7 +54,11 @@ int processLine(const char *line){
         //Takes first char in string
         clear(args[1][0]);
     } else if (!strcmp(args[0], "set")){
-        set(args[1][0], args[2]);
+        double a = 0;
+        sscanf(args[2], "%lf", a);
+        set(args[1][0], a);
+    } else if (!strcmp(args[0], "add")){
+        vecOps(find_arr('A'), find_arr('B'), add, find_arr('C'));
     } else if (!strcmp(args[0], "array")){
         double a = 0, b = 0;
         sscanf(args[2], "%lf", &a);

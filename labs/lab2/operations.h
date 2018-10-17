@@ -6,6 +6,9 @@
 
 double add(double a, double b);
 double subtract(double a, double b);
+double divide(double a, double b);
+double multiply(double a, double b);
+
 
 //Pass function as parameter to operate on single element
 int vectorOperation(matlab_arr_t* var, double (*func)(double), matlab_arr_t* result);
