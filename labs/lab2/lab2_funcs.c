@@ -92,8 +92,7 @@ int set(char name, double value){
 
 }
 
-int showCSV(const char *filename)
-{
+int showCSV(const char *filename){
     FILE *inputFile = fopen(filename, "r");
 
     char content[ARRAY_LEN];
