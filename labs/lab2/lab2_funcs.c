@@ -79,12 +79,10 @@ int clear(char name){
 
 int set(char name, double value){
     matlab_var_t* var = find_var(name);
-    double double_val = 0;
     if(!var){
         printf("Can't find variable called '%c'\n", name);
     } else{
-        sscanf(value, "%lf", &double_val);
-        var->v = double_val;
+        var->v = value;
         show(name);
         return 0;
     }
@@ -93,9 +91,16 @@ int set(char name, double value){
 
 }
 
+int show_vars(){
+    for(int i = 0; i < 6; i++){
+        printf("%c = %g\n", vars[i].n, vars[i].v);
+    }
+    return 0;
+}
+
 int calc(char r, char x, char y, char op){
-    double a = 0, b = 0, c = 0;
-    matlab_arr_t* A, B, C;
+    double a = 0, b = 0;
+    matlab_arr_t *A = NULL, *B = NULL, *C = NULL;
     double (*func_ptr)(double, double);
     int isMatrix = 0;
 
@@ -123,5 +128,7 @@ int calc(char r, char x, char y, char op){
     }
 
     isMatrix ? vecOps(A, B, func_ptr, C) : set(r, func_ptr(a,b));
+
+    return 0;
     
 }

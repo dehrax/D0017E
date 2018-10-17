@@ -27,7 +27,8 @@ matlab_arr_t *find_arr(char var);
 
 int array(char name, double start, double stop);
 int show(char name);
-int set(char name, char* value);
+int show_vars(void);
+int set(char name, double value);
 int calc(char r, char x,char y, char op);
 
 #endif /* __LAB2_H__ */

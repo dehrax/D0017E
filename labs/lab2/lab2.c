@@ -50,12 +50,14 @@ int processLine(const char *line){
     } else if(!strcmp(args[0], "show")){
         //Takes first char in string
         show(args[1][0]);
+    } else if(!strcmp(args[0], "vars")){
+        show_vars();
     } else if(!strcmp(args[0], "clear")){
         //Takes first char in string
         clear(args[1][0]);
     } else if (!strcmp(args[0], "set")){
         double a = 0;
-        sscanf(args[2], "%lf", a);
+        sscanf(args[2], "%lf", &a);
         set(args[1][0], a);
     } else if (!strcmp(args[0], "add")){
         vecOps(find_arr('A'), find_arr('B'), add, find_arr('C'));
