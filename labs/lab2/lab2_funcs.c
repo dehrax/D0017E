@@ -124,6 +124,7 @@ int importCSV(char var, const char *filename)
     if(!array)
     {
         printf("Could not find array called '%c'\n", var);
+        fclose(inputFile);
         return 1;
     }
     else if(!inputFile)
@@ -146,11 +147,19 @@ int importCSV(char var, const char *filename)
 /*
 int exportCSV(char var, const char *filename)
 {
+    FILE *outFile = fopen(filename, "w");
+    char content[ARRAY_LEN];
+    matlab_arr_t *array = find_arr(var);
+
+    if(!array)
+    {
+        printf("Could not find array called '%c'\n", var);
+        return 1;
+    }
 
 
 }
 */
-
 
 int printhelp(void)
 {
