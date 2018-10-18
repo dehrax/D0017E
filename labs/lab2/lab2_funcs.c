@@ -207,10 +207,10 @@ int calc(char r, char x, char y, char op){
     isMatrix ? vecOps(A, B, func_ptr, C) : set(r, func_ptr(a,b));
 
     return 0;
+}
     
 
-int printhelp(void)
-{
+int printhelp(void){
 
     char help_message[] =   "Available commands:\n"
                             "\thelp: shows this message \n"
