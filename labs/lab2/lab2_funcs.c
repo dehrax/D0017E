@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "lab2.h"
+#include "operations.h"
 #include <ctype.h>
 
 
@@ -76,14 +77,12 @@ int clear(char name){
     return 1;
 }
 
-int set(char name, char* value){
+int set(char name, double value){
     matlab_var_t* var = find_var(name);
-    double double_val = 0;
     if(!var){
         printf("Can't find variable called '%c'\n", name);
     } else{
-        sscanf(value, "%lf", &double_val);
-        var->v = double_val;
+        var->v = value;
         show(name);
         return 0;
     }
@@ -92,6 +91,55 @@ int set(char name, char* value){
 
 }
 
+
+int show_vars(){
+    for(int i = 0; i < 6; i++){
+        printf("%c = %g\n", vars[i].n, vars[i].v);
+    }
+    return 0;
+}
+
+int calc(char r, char x, char y, char op){
+    double a = 0, b = 0;
+    matlab_arr_t *A = NULL, *B = NULL, *C = NULL;
+    //Function pointer to define the operation to be used.
+    double (*func_ptr)(double, double);
+    int isMatrix = 0;
+
+    //Fetch variables
+    if(isupper(r) && isupper(x) && isupper(y)){
+        isMatrix = 1;
+        A = find_arr(x);
+        B = find_arr(y);
+        C = find_arr(r);
+    } else if(!(isupper(r) && isupper(x) && isupper(y))){
+        a = find_var(x)->v;
+        b = find_var(y)->v;
+    } else{
+        puts("Please do not mix scalars and vectors! My brain can't handle it!");
+        return 1;
+    }
+
+    //Decide operation and save that operation in the function pointer
+    switch(op){
+        case '/':
+            func_ptr = divide;
+            break;
+        case '*':
+            func_ptr = multiply;
+            break;
+        case '+':
+            func_ptr = add;
+            break;
+        case '-':
+            func_ptr = subtract;
+            break;
+    }
+
+    isMatrix ? vecOps(A, B, func_ptr, C) : set(r, func_ptr(a,b));
+
+    return 0;
+    
 
 int printhelp(void)
 {
