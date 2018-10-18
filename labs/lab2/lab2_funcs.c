@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "lab2.h"
 #include <ctype.h>
-
+#include <stdlib.h>
+#include <string.h>
 
 
 matlab_var_t *find_var(char var){
@@ -92,6 +93,64 @@ int set(char name, char* value){
 
 }
 
+int showCSV(const char *filename)
+{
+    FILE *inputFile = fopen(filename, "r");
+
+    char content[ARRAY_LEN];
+    if(!inputFile)
+     {
+         printf("Thou has failed to deliver the foremost correct file and this shall not pass!\n");
+         return 1;
+     }
+
+    while(fgets(content, ARRAY_LEN, inputFile))
+    {
+        printf("%s", content);
+    }
+    fclose(inputFile);
+    printf("\n"); 
+    
+    return 0;
+}
+
+int importCSV(char var, const char *filename)
+{
+    FILE *inputFile = fopen(filename, "r");
+    char content[ARRAY_LEN];
+    matlab_arr_t *array = find_arr(var);
+    double panic; //Variable called panic since thats what i wanted to do when my values were shifted with 48
+
+    if(!array)
+    {
+        printf("Could not find array called '%c'\n", var);
+        return 1;
+    }
+    else if(!inputFile)
+    {
+         printf("Thou has failed to deliver the foremost correct file and this shall not pass!\n");
+         return 1;
+    }
+     
+    for(int i = 0; i < ARRAY_LEN; i++){
+        fgets(content, ARRAY_LEN, inputFile);
+
+        if (sscanf(content, "%lf", &panic) == 1) //Without this the values get shifted with 48 since content is stored as ASCII 
+        {
+            array->v[i]=panic;
+        }
+    }
+    fclose(inputFile);
+    return 0; 
+}
+/*
+int exportCSV(char var, const char *filename)
+{
+
+
+}
+*/
+
 
 int printhelp(void)
 {
@@ -104,7 +163,7 @@ int printhelp(void)
                             "\tshowFile <filename>: Shows the file <filename> \n"
                             "\tdeleteFile <filename>: Deletes the file <filename> \n"
                             "\timportCSV <var> <filename>: Imports variables from the CSV file <filename> and stores in array <var> \n"
-                            "\texportCSV <filename>: Saves a  variable into the CSV file <filename> \n"
+                            "\texportCSV <var> <filename>: Saves a  variable <var> into the CSV file <filename> \n"
                             "\texportMAT <filename>: Saves a variable into the Matlab file <filename> \n"
                             "\texportJSON <filename>: Saves a variable into the JSON file <filename> \n"
                             "\texportXML <filename>: Saves a variable into the XML file <filename> \n"
