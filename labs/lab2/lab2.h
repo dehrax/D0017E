@@ -30,6 +30,7 @@ int show(char name);
 int show_vars(void);
 int set(char name, double value);
 int calc(char r, char x,char y, char op);
+int printhelp(void);
 
 #endif /* __LAB2_H__ */
 

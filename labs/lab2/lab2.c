@@ -47,6 +47,9 @@ int processLine(const char *line){
     if(!strcmp(args[0], "quit")){
         puts("Okay, goodbye!");
         return 0;
+    } else if(!strcmp(args[0], "exit")){
+        puts("Okay, goodbye!");
+        return 0;
     } else if(!strcmp(args[0], "show")){
         //Takes first char in string
         show(args[1][0]);
@@ -66,6 +69,8 @@ int processLine(const char *line){
         sscanf(args[2], "%lf", &a);
         sscanf(args[3], "%lf", &b);
         array(args[1][0], a, b);
+    } else if (!strcmp(args[0], "help")){
+        printhelp();
     }else{
         puts("Wow there, buddy! Can't find that command!");
     }

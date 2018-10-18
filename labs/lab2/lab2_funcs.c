@@ -3,7 +3,7 @@
 #include "operations.h"
 #include <ctype.h>
 
-void printhelp(void);
+
 
 matlab_var_t *find_var(char var){
 
@@ -91,6 +91,7 @@ int set(char name, double value){
 
 }
 
+
 int show_vars(){
     for(int i = 0; i < 6; i++){
         printf("%c = %g\n", vars[i].n, vars[i].v);
@@ -139,4 +140,30 @@ int calc(char r, char x, char y, char op){
 
     return 0;
     
+
+int printhelp(void)
+{
+
+    char help_message[] =   "Available commands:\n"
+                            "\thelp: shows this message \n"
+                            "\tset <var> <value>: Set variable <var> to value <value>, e.g \"set a 3.14\" \n"
+                            "\tsin <res> <var>: Calculates the sin values of <var> and stores in <res> \n"
+                            "\tshow <var>: Shows a scalar or array variable \n"
+                            "\tshowFile <filename>: Shows the file <filename> \n"
+                            "\tdeleteFile <filename>: Deletes the file <filename> \n"
+                            "\timportCSV <var> <filename>: Imports variables from the CSV file <filename> and stores in array <var> \n"
+                            "\texportCSV <filename>: Saves a  variable into the CSV file <filename> \n"
+                            "\texportMAT <filename>: Saves a variable into the Matlab file <filename> \n"
+                            "\texportJSON <filename>: Saves a variable into the JSON file <filename> \n"
+                            "\texportXML <filename>: Saves a variable into the XML file <filename> \n"
+                            "\tquit: exit this application \n"
+                            "\texit: exit this application \n"
+                            "\texit x: exit this application with return code x \n";
+                            
+
+    printf("%s", help_message);
+
+
+    
+    return 0;
 }
