@@ -32,7 +32,7 @@ int set(char name, double value);
 int calc(char r, char x,char y, char op);
 int showCSV(const char *filnename);
 int importCSV(char var, const char *filename);
-//int exportCSV(char var, const char *filename);
+int exportCSV(char var, const char *filename);
 int printhelp(void);
 
 #endif /* __LAB2_H__ */
