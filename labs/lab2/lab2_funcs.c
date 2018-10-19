@@ -162,6 +162,8 @@ int exportCSV(char var, const char *filename)
     fclose(outputFile);
     return 0;
 
+    return 0;
+
 }
 
 

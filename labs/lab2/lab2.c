@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include "lab2_funcs.h"
 #include "operations.h"
+#include "lab2.h"
 #define MAX_BUFFER 255
 
 matlab_var_t vars[] = {
@@ -55,6 +56,8 @@ int processLine(const char *line){
         show(args[1][0]);
     } else if(!strcmp(args[0], "vars")){
         show_vars();
+    } else if(!strcmp(args[0], "exportMAT")){
+        exportMAT(args[1][0], args[2]);
     } else if(!strcmp(args[0], "clear")){
         //Takes first char in string
         clear(args[1][0]);
