@@ -158,19 +158,11 @@ int exportCSV(char var, const char *filename)
         fprintf(outputFile, "%f\n", array->v[i]);
     }
 
-<<<<<<< HEAD
     fclose(outputFile);
     return 0;
 
-    return 0;
-
 }
 
-
-=======
-}
-
->>>>>>> Add show_vars
 int show_vars(){
     for(int i = 0; i < 6; i++){
         printf("%c = %g\n", vars[i].n, vars[i].v);
