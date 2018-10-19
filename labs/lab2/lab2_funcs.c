@@ -118,7 +118,7 @@ int importCSV(char var, const char *filename)
     FILE *inputFile = fopen(filename, "r");
     char content[ARRAY_LEN];
     matlab_arr_t *array = find_arr(var);
-    double panic; //Variable called panic since thats what i wanted to do when my values were shifted with 48
+    double val; //Variable called val since thats what i wanted to do when my values were shifted with 48
 
     if(!array)
     {
@@ -134,31 +134,36 @@ int importCSV(char var, const char *filename)
      
     for(int i = 0; i < ARRAY_LEN; i++){
         fgets(content, ARRAY_LEN, inputFile);
-
-        if (sscanf(content, "%lf", &panic) == 1) //Without this the values get shifted with 48 since content is stored as ASCII 
+        
+        if (sscanf(content, "%lf", &val) == 1) //Without this the values get shifted with 48 since content is stored as ASCII 
         {
-            array->v[i]=panic;
+            array->v[i]=val;
         }
     }
     fclose(inputFile);
     return 0; 
 }
-/*
+
 int exportCSV(char var, const char *filename)
 {
-    FILE *outFile = fopen(filename, "w");
-    char content[ARRAY_LEN];
+    FILE *outputFile = fopen(filename, "w");
     matlab_arr_t *array = find_arr(var);
 
     if(!array)
     {
         printf("Could not find array called '%c'\n", var);
+        fclose(outputFile); 
         return 1;
     }
+    for(int i = 0; i < ARRAY_LEN; i++){
+        fprintf(outputFile, "%f\n", array->v[i]);
+    }
 
+    fclose(outputFile);
+    return 0;
 
 }
-*/
+
 
 int show_vars(){
     for(int i = 0; i < 6; i++){
@@ -226,12 +231,8 @@ int printhelp(void){
                             "\texportXML <filename>: Saves a variable into the XML file <filename> \n"
                             "\tquit: exit this application \n"
                             "\texit: exit this application \n"
-                            "\texit x: exit this application with return code x \n";
-                            
+                            "\texit x: exit this application with return code x \n";             
 
-    printf("%s", help_message);
-
-
-    
+    printf("%s", help_message); 
     return 0;
 }

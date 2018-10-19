@@ -75,9 +75,9 @@ int processLine(const char *line){
         showCSV(args[1]);
     }else if (!strcmp(args[0], "importCSV")){
         importCSV(args[1][0], args[2]);
-    }/*else if (!strcmp(args[0], "exportCSV")){
-        exportCSV(args[1], args[2]);
-    }*/else{
+    }else if (!strcmp(args[0], "exportCSV")){
+        exportCSV(args[1][0], args[2]);
+    }else{
         puts("Wow there, buddy! Can't find that command!");
     }
 
