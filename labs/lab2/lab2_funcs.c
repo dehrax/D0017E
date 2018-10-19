@@ -92,8 +92,7 @@ int set(char name, double value){
 
 }
 
-int showCSV(const char *filename)
-{
+int showCSV(const char *filename){
     FILE *inputFile = fopen(filename, "r");
 
     char content[ARRAY_LEN];
@@ -163,7 +162,6 @@ int exportCSV(char var, const char *filename)
 
 }
 
-
 int show_vars(){
     for(int i = 0; i < 6; i++){
         printf("%c = %g\n", vars[i].n, vars[i].v);
@@ -212,7 +210,6 @@ int calc(char r, char x, char y, char op){
 
     return 0;
 }
-
 
 int printhelp(void){
 

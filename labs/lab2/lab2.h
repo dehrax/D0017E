@@ -2,7 +2,7 @@
 #define __LAB2_H__
 
 #define ARRAY_LEN	50
-
+#include <stdint.h>
 /* new data types */
 typedef struct var {
   char n;
@@ -13,6 +13,15 @@ typedef struct arr {
   char n;
   double v[ARRAY_LEN];
 } matlab_arr_t;
+
+typedef struct{
+    uint32_t type;
+    uint32_t mrows;
+    uint32_t ncols;
+    uint32_t imagf;
+    uint32_t namelen;
+} Fmatrix;
+
 
 /* global variables, beware */
 extern matlab_var_t vars[6];
@@ -34,6 +43,7 @@ int showCSV(const char *filnename);
 int importCSV(char var, const char *filename);
 int exportCSV(char var, const char *filename);
 int printhelp(void);
+int exportMAT(char var, const char* filename);
 
 #endif /* __LAB2_H__ */
 
