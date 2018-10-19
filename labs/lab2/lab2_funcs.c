@@ -118,8 +118,7 @@ int importCSV(char var, const char *filename)
     FILE *inputFile = fopen(filename, "r");
     char content[ARRAY_LEN];
     matlab_arr_t *array = find_arr(var);
-    double val; //Variable called val since thats what i wanted to do when my values were shifted with 48
-
+    double val;
     if(!array)
     {
         printf("Could not find array called '%c'\n", var);
@@ -213,7 +212,7 @@ int calc(char r, char x, char y, char op){
 
     return 0;
 }
-    
+
 
 int printhelp(void){
 
