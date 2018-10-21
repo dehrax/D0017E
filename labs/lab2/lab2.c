@@ -62,6 +62,8 @@ int processLine(const char *line){
         show_vars();
     } else if(!strcmp(args[0], "exportMAT")){
         exportMAT(args[1][0], args[2]);
+    } else if(!strcmp(args[0], "event")){
+        event(find_arr(args[1][0]), find_arr(args[2][0]));
     } else if(!strcmp(args[0], "clear")){
         //Takes first char in string
         clear(args[1][0]);

@@ -45,6 +45,7 @@ int exportCSV(char var, const char *filename);
 int printhelp(void);
 int exportMAT(char var, const char* filename);
 int inlineArithmetic(const char * input);
+int event(matlab_arr_t* output, matlab_arr_t* input);
 
 #endif /* __LAB2_H__ */
 
