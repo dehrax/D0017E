@@ -44,6 +44,7 @@ int importCSV(char var, const char *filename);
 int exportCSV(char var, const char *filename);
 int printhelp(void);
 int exportMAT(char var, const char* filename);
+int debounce(char R, char I);
 
 #endif /* __LAB2_H__ */
 

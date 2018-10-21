@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <stdbool.h>
 
 matlab_var_t *find_var(char var){
 
@@ -209,6 +209,82 @@ int calc(char r, char x, char y, char op){
     isMatrix ? vecOps(A, B, func_ptr, C) : set(r, func_ptr(a,b));
 
     return 0;
+}
+
+int debounce(char R, char I)
+{
+    matlab_arr_t *resultArray = find_arr(R);
+    matlab_arr_t *inputArray = find_arr(I);
+
+    int nFollowingLow = 0, startLowIndex = 0, endLowIndex = 0;
+    bool previousLow = false, pressFound = false;
+
+    if(!resultArray)
+    {
+        printf("Could not find array called '%c'\n", R);
+        return 1;
+    }
+    else if(!inputArray)
+    {
+        printf("Could not find array called '%c'\n", I);
+        return 1;
+    }
+
+/* The analogue signal is sampled at 50Hz  with the duration of 1 second
+    1/50=0,02 means every point of data equals 0,02 seconds or 20ms
+    If the the transition is shorter than 200ms it should be ignored, if its greater than 200ms it should be registered
+        200/20=10, meaning there hs to be at least 10 following points that have a value < 0.3V which is the limit.
+*/
+
+    for (int i = 0; i < ARRAY_LEN; i++)
+    {
+        double inputElement = inputArray->v[i];
+
+        if (inputElement < 0.3)
+        {
+            if (nFollowingLow == 0 && pressFound == false)
+            {
+                startLowIndex = i;
+            }
+            if (nFollowingLow  >= 10 && previousLow == true && pressFound == false)
+            {
+                endLowIndex = i;
+            }
+    
+            nFollowingLow++;
+            previousLow = true;
+
+        }
+        else if (inputElement >= 3)
+        {
+            if (nFollowingLow < 10 && pressFound == false)
+            {
+                startLowIndex = i;
+            }
+            if (nFollowingLow >= 10)
+            {
+                endLowIndex = i-1;
+                pressFound = true;
+            }
+
+            nFollowingLow = 0;
+            previousLow = false;
+        }
+    }
+    for (int i = 0; i < ARRAY_LEN; i++)
+    {
+        if (i >= startLowIndex && i <= endLowIndex)
+        {
+            resultArray->v[i] = 0;
+        }
+        else
+        {
+            resultArray->v[i] = 3.30;
+        }
+    }
+
+    return 0;
+
 }
 
 int printhelp(void){
