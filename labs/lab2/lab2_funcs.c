@@ -48,7 +48,7 @@ int show(char name){
         } else{
             printf("%c =\n", name);
             for(int i = 0; i < ARRAY_LEN; i++){
-                printf("[%i]: %g\n", i, var->v[i]);
+                printf("[%i]: %g\n", i+1, var->v[i]);
             }
             return 0;
         }
@@ -306,5 +306,44 @@ int printhelp(void){
                             "\texit x: exit this application with return code x \n";             
 
     printf("%s", help_message); 
+    return 0;
+}
+
+int event(matlab_arr_t* output, matlab_arr_t* input){
+    double threshold = 0.5;
+    int sampleLength = 10;
+
+    for(int i = 0; i<ARRAY_LEN; i++ ){
+        if(input->v[i] >= threshold){
+            int j = 0;
+            int end = 0;
+
+            while(input->v[i+j] >= threshold || i+j >= ARRAY_LEN){
+                output->v[i+j] = input->v[i+j];
+                j++;
+            }
+            end = j;
+
+            //Reset if sample is shorter than 10
+            if(j < sampleLength){
+                for(;j != 0; --j){
+                    printf("[%i + %i]: %g, \n", i,j, output->v[i+j-1]); //-1 to get proper index
+                    output->v[i+j-1] = 0;
+                    
+                }
+            } else{
+                printf("Event start detected at @%i\n", i);
+                printf("Event end detected at @%i\n", i+j);
+                
+            }
+
+            //We have handled these numbers now
+            i = i+end;
+            
+        } else{
+            output->v[i] = 0;
+        }
+    }
+
     return 0;
 }
