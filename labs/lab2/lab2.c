@@ -38,7 +38,10 @@ int processLine(const char *line){
 
     char* p = input;
     while(*p != '\0'){
-        if(isspace(*p)){
+        if(*p == '='){
+            inlineArithmetic(line);
+            return 1;
+        } else if(isspace(*p)){
             *p = '\0';
             args[argc++] = p + 1;
         }
@@ -107,6 +110,16 @@ int initVars(){
         arrs[4].v[i]=0;
         arrs[5].v[i]=0;
     }
+    return 0;
+}
+
+int inlineArithmetic(const char* input){
+    char result = input[0];
+    char A = input[2];
+    char B = input[4];
+    char operation = input[3];
+
+    calc(result, A, B, operation);
     return 0;
 }
 

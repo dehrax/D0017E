@@ -48,7 +48,7 @@ int show(char name){
         } else{
             printf("%c =\n", name);
             for(int i = 0; i < ARRAY_LEN; i++){
-                printf("[%i]: %g\n", i, var->v[i]);
+                printf("[%i]: %g\n", i+1, var->v[i]);
             }
             return 0;
         }
