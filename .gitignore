@@ -1,6 +1,6 @@
 .vscode
 lab2
-
+*.pdf
 
 # Prerequisites
 *.d
