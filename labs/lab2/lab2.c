@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 #include "lab2_funcs.h"
 #include "operations.h"
 #include "lab2.h"
@@ -68,8 +69,8 @@ int processLine(const char *line){
         double a = 0;
         sscanf(args[2], "%lf", &a);
         set(args[1][0], a);
-    } else if (!strcmp(args[0], "add")){
-        vecOps(find_arr('A'), find_arr('B'), add, find_arr('C'));
+    } else if (!strcmp(args[0], "sin")){
+        vectorOperation(find_arr(args[2][0]), sin, find_arr(args[1][0]));
     } else if (!strcmp(args[0], "array")){
         double a = 0, b = 0;
         sscanf(args[2], "%lf", &a);
