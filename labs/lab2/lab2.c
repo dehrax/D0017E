@@ -86,6 +86,8 @@ int processLine(const char *line){
         importCSV(args[1][0], args[2]);
     }else if (!strcmp(args[0], "exportCSV")){
         exportCSV(args[1][0], args[2]);
+    }else if (!strcmp(args[0], "debounce")){
+        debounce(args[1][0], args[2][0]);
     }else{
         puts("Wow there, buddy! Can't find that command!");
     }
