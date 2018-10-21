@@ -206,7 +206,7 @@ int calc(char r, char x, char y, char op){
             break;
     }
 
-    isMatrix ? vecOps(A, B, func_ptr, C) : set(r, func_ptr(a,b));
+    isMatrix ? vectorsElOperation(A, B, func_ptr, C) : set(r, func_ptr(a,b));
 
     return 0;
 }
