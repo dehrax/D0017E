@@ -30,7 +30,7 @@ int array(char name, double start, double stop){
         printf("Could not find variable called '%c'", name);
         return 1;
     }
-    
+    We continue to monitor restores which are taking longer than anticipated. We estimate they will be caught up in an hour and a half.
     double step = (stop - start)/ (ARRAY_LEN-1);
 
     for(int i = 0; i < ARRAY_LEN; i++){
@@ -66,13 +66,26 @@ int show(char name){
 }
 
 int clear(char name){
-    matlab_var_t* var = find_var(name);
-    if(!var){
-        printf("Can't find variable called '%c'\n", name);
+    if(!isupper(name)){
+        matlab_var_t* var = find_var(name);
+        if(!var){
+            printf("Can't find variable called '%c'\n", name);
+        } else{
+            var->v = 0;
+            show(name);
+            return 0;
+        }
     } else{
-        var->v = 0;
-        show(name);
-        return 0;
+        matlab_arr_t* arr = find_arr(name);
+        if(!arr){
+            printf("Can't find variable called '%c'\n", name);
+        } else{
+            for(int i = 0; i < ARRAY_LEN; i++){
+                arr->v[i] = 0;
+            }
+            show(name);
+            return 0;
+        }
     }
 
     return 1;
@@ -327,9 +340,7 @@ int event(matlab_arr_t* output, matlab_arr_t* input){
             //Reset if sample is shorter than 10
             if(j < sampleLength){
                 for(;j != 0; --j){
-                    printf("[%i + %i]: %g, \n", i,j, output->v[i+j-1]); //-1 to get proper index
-                    output->v[i+j-1] = 0;
-                    
+                    output->v[i+j-1] = 0; //-1 to get proper index
                 }
             } else{
                 printf("Event start detected at @%i\n", i);
