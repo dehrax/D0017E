@@ -72,7 +72,7 @@ int processLine(const char *line){
         sscanf(args[2], "%lf", &a);
         set(args[1][0], a);
     } else if (!strcmp(args[0], "sin")){
-        vectorOperation(find_arr(args[2][0]), sin, find_arr(args[1][0]));
+        vectorElOperation(find_arr(args[2][0]), sin, find_arr(args[1][0]));
     } else if (!strcmp(args[0], "array")){
         double a = 0, b = 0;
         sscanf(args[2], "%lf", &a);
