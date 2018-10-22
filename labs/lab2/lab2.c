@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 #include "lab2_funcs.h"
 #include "operations.h"
 #include "lab2.h"
@@ -38,7 +39,10 @@ int processLine(const char *line){
 
     char* p = input;
     while(*p != '\0'){
-        if(isspace(*p)){
+        if(*p == '='){
+            inlineArithmetic(line);
+            return 1;
+        } else if(isspace(*p)){
             *p = '\0';
             args[argc++] = p + 1;
         }
@@ -58,6 +62,8 @@ int processLine(const char *line){
         show_vars();
     } else if(!strcmp(args[0], "exportMAT")){
         exportMAT(args[1][0], args[2]);
+    } else if(!strcmp(args[0], "event")){
+        event(find_arr(args[1][0]), find_arr(args[2][0]));
     } else if(!strcmp(args[0], "clear")){
         //Takes first char in string
         clear(args[1][0]);
@@ -65,8 +71,8 @@ int processLine(const char *line){
         double a = 0;
         sscanf(args[2], "%lf", &a);
         set(args[1][0], a);
-    } else if (!strcmp(args[0], "add")){
-        vecOps(find_arr('A'), find_arr('B'), add, find_arr('C'));
+    } else if (!strcmp(args[0], "sin")){
+        vectorElOperation(find_arr(args[2][0]), sin, find_arr(args[1][0]));
     } else if (!strcmp(args[0], "array")){
         double a = 0, b = 0;
         sscanf(args[2], "%lf", &a);
@@ -80,6 +86,8 @@ int processLine(const char *line){
         importCSV(args[1][0], args[2]);
     }else if (!strcmp(args[0], "exportCSV")){
         exportCSV(args[1][0], args[2]);
+    }else if (!strcmp(args[0], "debounce")){
+        debounce(args[1][0], args[2][0]);
     }else{
         puts("Wow there, buddy! Can't find that command!");
     }
@@ -107,6 +115,16 @@ int initVars(){
         arrs[4].v[i]=0;
         arrs[5].v[i]=0;
     }
+    return 0;
+}
+
+int inlineArithmetic(const char* input){
+    char result = input[0];
+    char A = input[2];
+    char B = input[4];
+    char operation = input[3];
+
+    calc(result, A, B, operation);
     return 0;
 }
 
