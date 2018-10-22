@@ -1,9 +1,11 @@
 # Documentation
 
+Tobias Skarhed (tobska-7@student.ltu.se), Christer Zhou (chrzho-7@student.ltu.se)
+
 ## Commands
 
 ### `help`
-          
+
 Displays all available commands and how to use them.
 
 ### `vars`
@@ -36,7 +38,9 @@ Displays the given variable, both vector and scalar.
 
 ### `event <output> <input>`
 
-Identifies values over `0.5` with a bigger sample size than `10` in the `input` vector and sets all other values to 0 in the `output`.
+Identifies values over `0.5` with a bigger sample size than `10` in the `input` vector and sets all other values to 0 in the `output`. It prints the start and end points of the given events.
+
+![Print screen of command](images/event.png)
 
 ### `debounce A <num>`
 
