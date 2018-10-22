@@ -1,5 +1,7 @@
 # Mini MATLAB - Technical report
 
+Tobias Skarhed (tobska-7@student.ltu.se), Christer Zhou (chrzho-7@student.ltu.se)
+
 ## What we have learned
 
 - How to create a proper software design and implement it
