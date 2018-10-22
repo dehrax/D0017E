@@ -66,13 +66,26 @@ int show(char name){
 }
 
 int clear(char name){
-    matlab_var_t* var = find_var(name);
-    if(!var){
-        printf("Can't find variable called '%c'\n", name);
+    if(!isupper(name)){
+        matlab_var_t* var = find_var(name);
+        if(!var){
+            printf("Can't find variable called '%c'\n", name);
+        } else{
+            var->v = 0;
+            show(name);
+            return 0;
+        }
     } else{
-        var->v = 0;
-        show(name);
-        return 0;
+        matlab_arr_t* arr = find_arr(name);
+        if(!arr){
+            printf("Can't find variable called '%c'\n", name);
+        } else{
+            for(int i = 0; i < ARRAY_LEN; i++){
+                arr->v[i] = 0;
+            }
+            show(name);
+            return 0;
+        }
     }
 
     return 1;
